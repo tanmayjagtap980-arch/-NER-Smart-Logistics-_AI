@@ -11,6 +11,7 @@ from database.database import initialize_database
 from modules.risk_prediction import calculate_risk
 from modules.emergency import create_emergency
 from modules.map_module import show_map
+from dotenv import load_dotenv
 from utils.auth import (
     login_user,
     register_user
@@ -28,7 +29,7 @@ st.set_page_config(
 )
 
 load_css()
-
+load_dotenv()
 
 # -----------------------------
 # INITIALIZE DATABASE
