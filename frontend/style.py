@@ -7,245 +7,746 @@ def load_css():
         """
         <style>
 
-        /* =========================
-           MAIN APPLICATION
-        ========================= */
+        /* =========================================================
+           NER SMART LOGISTICS AI
+           GLOBAL DESIGN SYSTEM
+        ========================================================= */
+
+        :root {
+            --bg: #07111F;
+            --bg-secondary: #081522;
+            --card: #0D1B2A;
+            --card-hover: #112438;
+
+            --primary: #19C3FF;
+            --primary-dark: #0EA5E9;
+
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+
+            --text: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --muted: #94A3B8;
+
+            --border: #1E3A52;
+            --border-light: #24465E;
+        }
+
+
+        /* =========================================================
+           GLOBAL APP
+        ========================================================= */
 
         .stApp {
+
             background:
                 radial-gradient(
-                    circle at 10% 10%,
-                    rgba(30, 64, 175, 0.15),
-                    transparent 35%
+                    circle at 10% 0%,
+                    rgba(25,195,255,0.09),
+                    transparent 30%
                 ),
                 radial-gradient(
                     circle at 90% 20%,
-                    rgba(14, 116, 144, 0.12),
-                    transparent 35%
+                    rgba(14,165,233,0.05),
+                    transparent 25%
                 ),
-                #07111f;
-            color: #f8fafc;
+                linear-gradient(
+                    135deg,
+                    #07111F 0%,
+                    #081522 50%,
+                    #07111F 100%
+                );
+
+            color: var(--text);
+
+            min-height: 100vh;
         }
 
 
-        /* =========================
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================= */
+
+        .main .block-container {
+
+            padding-top: 1.8rem;
+            padding-bottom: 4rem;
+
+            max-width: 1500px;
+
+            animation: pageFade 0.45s ease;
+        }
+
+
+        /* =========================================================
+           PAGE ANIMATION
+        ========================================================= */
+
+        @keyframes pageFade {
+
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+
+        /* =========================================================
+           REMOVE STREAMLIT DEFAULT UI
+        ========================================================= */
+
+        #MainMenu {
+            visibility: hidden;
+        }
+
+        footer {
+            visibility: hidden;
+        }
+
+        header {
+            visibility: hidden;
+        }
+
+
+        /* =========================================================
            SIDEBAR
-        ========================= */
+        ========================================================= */
 
         section[data-testid="stSidebar"] {
-            background: #081321;
-            border-right: 1px solid rgba(148,163,184,0.15);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #081522 0%,
+                    #07111F 100%
+                );
+
+            border-right: 1px solid var(--border);
+
+            box-shadow:
+                8px 0 30px rgba(0,0,0,0.18);
         }
+
+
+        section[data-testid="stSidebar"] > div {
+
+            padding-top: 1rem;
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+        }
+
+
+        /* =========================================================
+           SIDEBAR TEXT
+        ========================================================= */
 
         section[data-testid="stSidebar"] h1,
         section[data-testid="stSidebar"] h2,
         section[data-testid="stSidebar"] h3 {
-            color: white;
+
+            color: var(--text) !important;
         }
 
 
-        /* =========================
-           HEADER
-        ========================= */
+        /* =========================================================
+           TYPOGRAPHY
+        ========================================================= */
 
-        .hero {
+        h1,
+        h2,
+        h3,
+        h4 {
 
-            padding: 28px;
+            color: var(--text) !important;
 
-            border-radius: 20px;
+            letter-spacing: -0.5px;
+
+            font-weight: 750;
+        }
+
+
+        p,
+        label {
+
+            color: var(--text-secondary) !important;
+        }
+
+
+        /* =========================================================
+           LINKS
+        ========================================================= */
+
+        a {
+
+            color: var(--primary) !important;
+
+            text-decoration: none;
+
+            transition: 0.2s ease;
+        }
+
+        a:hover {
+
+            color: #67D9FF !important;
+
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .stButton > button {
+
+            width: 100%;
+
+            min-height: 42px;
+
+            border-radius: 10px;
+
+            border: 1px solid #1E4863;
 
             background:
                 linear-gradient(
                     135deg,
-                    rgba(15,23,42,0.96),
-                    rgba(15,42,67,0.94)
+                    #0EA5E9,
+                    #06B6D4
                 );
 
-            border: 1px solid rgba(96,165,250,0.20);
+            color: white;
+
+            font-weight: 700;
+
+            padding: 0.65rem 1rem;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .stButton > button:hover {
+
+            transform: translateY(-2px);
+
+            border-color: var(--primary);
 
             box-shadow:
-                0 15px 40px rgba(0,0,0,0.25);
-
-            margin-bottom: 25px;
-        }
-
-        .hero-title {
-
-            font-size: 34px;
-            font-weight: 800;
-
-            color: #f8fafc;
-
-            margin-bottom: 6px;
-        }
-
-        .hero-subtitle {
-
-            color: #94a3b8;
-
-            font-size: 15px;
+                0 8px 25px rgba(14,165,233,0.25);
         }
 
 
-        /* =========================
-           KPI CARDS
-        ========================= */
+        .stButton > button:active {
 
-        .kpi {
+            transform: translateY(0);
+        }
 
-            padding: 20px;
 
-            border-radius: 18px;
+        /* =========================================================
+           SECONDARY BUTTON
+        ========================================================= */
+
+        .secondary-button {
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            color: var(--text);
+
+            border-radius: 10px;
+
+            padding: 10px 18px;
+        }
+
+
+        /* =========================================================
+           INPUTS
+        ========================================================= */
+
+        div[data-baseweb="select"] > div,
+        .stTextInput input,
+        .stNumberInput input,
+        .stTextArea textarea {
+
+            background: var(--card) !important;
+
+            color: var(--text) !important;
+
+            border: 1px solid var(--border-light) !important;
+
+            border-radius: 10px !important;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+
+        .stTextInput input:focus,
+        .stNumberInput input:focus,
+        .stTextArea textarea:focus {
+
+            border-color: var(--primary) !important;
+
+            box-shadow:
+                0 0 0 2px rgba(25,195,255,0.12) !important;
+        }
+
+
+        /* =========================================================
+           SELECTBOX
+        ========================================================= */
+
+        div[data-baseweb="select"] > div {
+
+            min-height: 42px;
+        }
+
+
+        /* =========================================================
+           CHECKBOX
+        ========================================================= */
+
+        div[data-testid="stCheckbox"] label {
+
+            color: var(--text-secondary) !important;
+        }
+
+
+        /* =========================================================
+           RADIO BUTTON
+        ========================================================= */
+
+        div[data-testid="stRadio"] label {
+
+            color: var(--text-secondary) !important;
+        }
+
+
+        /* =========================================================
+           METRICS
+        ========================================================= */
+
+        div[data-testid="stMetric"] {
+
+            position: relative;
 
             background:
                 linear-gradient(
                     145deg,
-                    #0f1d2d,
-                    #0a1625
+                    rgba(13,27,42,0.96),
+                    rgba(17,36,56,0.90)
                 );
 
-            border: 1px solid
-                rgba(148,163,184,0.15);
+            border: 1px solid var(--border);
 
-            box-shadow:
-                0 10px 25px rgba(0,0,0,0.20);
-
-            min-height: 125px;
-        }
-
-        .kpi-title {
-
-            color: #94a3b8;
-
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: 1px;
-        }
-
-        .kpi-value {
-
-            color: #f8fafc;
-
-            font-size: 30px;
-
-            font-weight: 800;
-
-            margin-top: 8px;
-        }
-
-        .kpi-status {
-
-            color: #22c55e;
-
-            font-size: 12px;
-
-            margin-top: 5px;
-        }
-
-
-        /* =========================
-           SECTION TITLE
-        ========================= */
-
-        .section-title {
-
-            font-size: 21px;
-
-            font-weight: 700;
-
-            color: #f8fafc;
-
-            margin-top: 25px;
-
-            margin-bottom: 12px;
-        }
-
-
-        /* =========================
-           ALERT CARDS
-        ========================= */
-
-        .alert {
-
-            padding: 15px;
+            padding: 18px;
 
             border-radius: 14px;
 
-            margin-bottom: 10px;
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.15);
 
-            background: #0f1d2d;
-
-            border: 1px solid
-                rgba(148,163,184,0.12);
-        }
-
-        .alert-red {
-
-            border-left: 4px solid #ef4444;
-        }
-
-        .alert-orange {
-
-            border-left: 4px solid #f97316;
-        }
-
-        .alert-green {
-
-            border-left: 4px solid #22c55e;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
 
-        /* =========================
-           BUTTONS
-        ========================= */
+        div[data-testid="stMetric"]:hover {
 
-        .stButton > button {
+            transform: translateY(-3px);
 
-            border-radius: 10px;
+            border-color: #2A6587;
 
-            border: 1px solid
-                rgba(96,165,250,0.30);
-
-            background: #10243a;
-
-            color: white;
-
-            font-weight: 600;
-
-            transition: 0.2s;
-        }
-
-        .stButton > button:hover {
-
-            border-color: #60a5fa;
-
-            background: #163454;
+            box-shadow:
+                0 12px 30px rgba(0,0,0,0.25);
         }
 
 
-        /* =========================
+        div[data-testid="stMetricLabel"] {
+
+            color: var(--muted) !important;
+        }
+
+
+        div[data-testid="stMetricValue"] {
+
+            color: var(--text) !important;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           CUSTOM CARDS
+        ========================================================= */
+
+        .ner-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(13,27,42,0.96),
+                    rgba(17,36,56,0.92)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            margin-bottom: 16px;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.16);
+
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+
+        .ner-card:hover {
+
+            transform: translateY(-2px);
+
+            border-color: #285773;
+        }
+
+
+        /* =========================================================
+           HERO CARD
+        ========================================================= */
+
+        .hero-card {
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(25,195,255,0.16),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #0B1D2E,
+                    #0D263A
+                );
+
+            border: 1px solid #214761;
+
+            border-radius: 20px;
+
+            padding: 28px;
+
+            margin-bottom: 24px;
+
+            box-shadow:
+                0 15px 45px rgba(0,0,0,0.22);
+        }
+
+
+        /* =========================================================
+           STATUS BADGES
+        ========================================================= */
+
+        .status-online {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 999px;
+
+            background: rgba(34,197,94,0.10);
+
+            border: 1px solid rgba(34,197,94,0.25);
+
+            color: #4ADE80;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status-warning {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 999px;
+
+            background: rgba(245,158,11,0.10);
+
+            border: 1px solid rgba(245,158,11,0.25);
+
+            color: #FBBF24;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        .status-danger {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            padding: 6px 11px;
+
+            border-radius: 999px;
+
+            background: rgba(239,68,68,0.10);
+
+            border: 1px solid rgba(239,68,68,0.25);
+
+            color: #F87171;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           ALERT CARDS
+        ========================================================= */
+
+        .alert-card {
+
+            padding: 16px 18px;
+
+            border-radius: 12px;
+
+            margin: 10px 0;
+
+            background: var(--card);
+
+            border-left: 4px solid var(--warning);
+        }
+
+
+        .alert-critical {
+
+            border-left-color: var(--danger);
+
+            background:
+                rgba(239,68,68,0.06);
+        }
+
+
+        .alert-success {
+
+            border-left-color: var(--success);
+
+            background:
+                rgba(34,197,94,0.06);
+        }
+
+
+        /* =========================================================
            DATAFRAME
-        ========================= */
+        ========================================================= */
 
         div[data-testid="stDataFrame"] {
 
-            border-radius: 15px;
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+        }
+
+
+        /* =========================================================
+           TABLE
+        ========================================================= */
+
+        table {
+
+            border-radius: 12px;
 
             overflow: hidden;
         }
 
 
-        /* =========================
-           REMOVE EXTRA TOP SPACE
-        ========================= */
+        /* =========================================================
+           TABS
+        ========================================================= */
 
-        .block-container {
+        button[data-baseweb="tab"] {
 
-            padding-top: 2rem;
+            color: var(--muted) !important;
 
-            padding-bottom: 3rem;
+            font-weight: 600;
+        }
+
+
+        button[data-baseweb="tab"][aria-selected="true"] {
+
+            color: var(--primary) !important;
+
+            border-bottom-color: var(--primary) !important;
+        }
+
+
+        /* =========================================================
+           EXPANDER
+        ========================================================= */
+
+        div[data-testid="stExpander"] {
+
+            background: var(--card);
+
+            border: 1px solid var(--border);
+
+            border-radius: 12px;
+        }
+
+
+        /* =========================================================
+           PROGRESS BAR
+        ========================================================= */
+
+        div[data-testid="stProgressBar"] {
+
+            background: #12263A;
+
+            border-radius: 999px;
+        }
+
+
+        /* =========================================================
+           DIVIDERS
+        ========================================================= */
+
+        hr {
+
+            border-color: var(--border) !important;
+
+            opacity: 0.7;
+        }
+
+
+        /* =========================================================
+           SPINNER
+        ========================================================= */
+
+        div[data-testid="stSpinner"] {
+
+            color: var(--primary);
+        }
+
+
+        /* =========================================================
+           SUCCESS / WARNING / ERROR
+        ========================================================= */
+
+        div[data-testid="stAlert"] {
+
+            border-radius: 12px;
+
+            border: 1px solid var(--border);
+        }
+
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+
+            width: 8px;
+
+            height: 8px;
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background: var(--bg);
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #1E4863;
+
+            border-radius: 10px;
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background: #2A6587;
+        }
+
+
+        /* =========================================================
+           TEXT SELECTION
+        ========================================================= */
+
+        ::selection {
+
+            background: rgba(25,195,255,0.25);
+
+            color: white;
+        }
+
+
+        /* =========================================================
+           MOBILE / SMALL SCREEN
+        ========================================================= */
+
+        @media (max-width: 768px) {
+
+            .main .block-container {
+
+                padding-left: 1rem;
+
+                padding-right: 1rem;
+            }
+
+
+            .hero-card {
+
+                padding: 20px;
+
+                border-radius: 15px;
+            }
+
+
+            .ner-card {
+
+                padding: 16px;
+            }
+
         }
 
         </style>

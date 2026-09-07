@@ -1,6 +1,9 @@
 import streamlit as st
 import pandas as pd
 from frontend.style import load_css
+
+load_css()
+from frontend.style import load_css
 from frontend.components import hero, kpi, alert_card
 from frontend.components import hero
 from frontend.components import hero
